@@ -1,191 +1,227 @@
 loadstring([[
-local Players = game:GetService("Players")
-local TweenService = game:GetService("TweenService")
+local success, err = pcall(function()
+    local Players = game:GetService("Players")
+    local TweenService = game:GetService("TweenService")
 
-local player = Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
+    local player = Players.LocalPlayer
+    local playerGui = player:WaitForChild("PlayerGui", 10)
 
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "ExecutorUI"
-screenGui.ResetOnSpawn = false
-screenGui.Parent = playerGui
-
-local mainButton = Instance.new("TextButton")
-mainButton.Size = UDim2.new(0, 137, 0, 40)
-mainButton.Position = UDim2.new(0, 0, 0.892, 0)
-mainButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-mainButton.Text = "OPEN"
-mainButton.TextScaled = true
-mainButton.Parent = screenGui
-
-local mainFrame = Instance.new("Frame")
-mainFrame.Name = "Frame"
-mainFrame.Size = UDim2.new(0, 265, 0, 207)
-mainFrame.Position = UDim2.new(0.108, 0, 0.336, 0)
-mainFrame.BackgroundColor3 = Color3.fromRGB(255, 165, 0)
-mainFrame.Visible = false
-mainFrame.Parent = screenGui
-
-local section1Button = Instance.new("TextButton")
-section1Button.Name = "Section1Button"
-section1Button.Size = UDim2.new(0, 76, 0, 50)
-section1Button.Position = UDim2.new(0.038, 0, 0.176, 0)
-section1Button.Text = "SECTION 1 FARM SOULS"
-section1Button.TextScaled = true
-section1Button.Parent = mainFrame
-
-local section2Button = Instance.new("TextButton")
-section2Button.Name = "Section2Button"
-section2Button.Size = UDim2.new(0, 76, 0, 50)
-section2Button.Position = UDim2.new(0.351, 0, 0.176, 0)
-section2Button.Text = "SECTION 2 GET CHARACTERS"
-section2Button.TextScaled = true
-section2Button.Parent = mainFrame
-
-local section3Button = Instance.new("TextButton")
-section3Button.Name = "Section3Button"
-section3Button.Size = UDim2.new(0, 76, 0, 50)
-section3Button.Position = UDim2.new(0.664, 0, 0.176, 0)
-section3Button.Text = "SECTION 3 GET BADGES"
-section3Button.TextScaled = true
-section3Button.Parent = mainFrame
-
-local ownerLabel = Instance.new("TextLabel")
-ownerLabel.Size = UDim2.new(0, 245, 0, 30)
-ownerLabel.Position = UDim2.new(0.038, 0, 0.469, 0)
-ownerLabel.Text = "Username of the owner who made the UI"
-ownerLabel.TextScaled = true
-ownerLabel.BackgroundTransparency = 1
-ownerLabel.Parent = mainFrame
-
-local creditsLabel = Instance.new("TextLabel")
-creditsLabel.Size = UDim2.new(0, 245, 0, 30)
-creditsLabel.Position = UDim2.new(0.034, 0, 0.662, 0)
-creditsLabel.Text = "Credits"
-creditsLabel.TextScaled = true
-creditsLabel.BackgroundTransparency = 1
-creditsLabel.Parent = mainFrame
-
-local farmSoulsFrame = Instance.new("Frame")
-farmSoulsFrame.Name = "FarmSoulsFrameSection"
-farmSoulsFrame.Size = UDim2.new(0, 265, 0, 207)
-farmSoulsFrame.Position = UDim2.new(0.107, 0, 0.334, 0)
-farmSoulsFrame.BackgroundColor3 = Color3.fromRGB(255, 165, 0)
-farmSoulsFrame.Visible = false
-farmSoulsFrame.Parent = screenGui
-
-local tp500Label = Instance.new("TextLabel")
-tp500Label.Size = UDim2.new(0, 89, 0, 30)
-tp500Label.Position = UDim2.new(0, 0, 0.227, 0)
-tp500Label.Text = "500 Points"
-tp500Label.TextScaled = true
-tp500Label.BackgroundTransparency = 1
-tp500Label.Parent = farmSoulsFrame
-
-local tp500Button = Instance.new("TextButton")
-tp500Button.Name = "TP500Button"
-tp500Button.Size = UDim2.new(0, 76, 0, 50)
-tp500Button.Position = UDim2.new(0.038, 0, 0.422, 0)
-tp500Button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-tp500Button.Text = "Teleport"
-tp500Button.TextScaled = true
-tp500Button.Parent = farmSoulsFrame
-
-local tp1000Label = Instance.new("TextLabel")
-tp1000Label.Size = UDim2.new(0, 89, 0, 30)
-tp1000Label.Position = UDim2.new(0.328, 0, 0.473, 0)
-tp1000Label.Text = "1000 Points"
-tp1000Label.TextScaled = true
-tp1000Label.BackgroundTransparency = 1
-tp1000Label.Parent = farmSoulsFrame
-
-local tp1000Button = Instance.new("TextButton")
-tp1000Button.Name = "TP1000Button"
-tp1000Button.Size = UDim2.new(0, 76, 0, 50)
-tp1000Button.Position = UDim2.new(0.355, 0, 0.669, 0)
-tp1000Button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-tp1000Button.Text = "Teleport"
-tp1000Button.TextScaled = true
-tp1000Button.Parent = farmSoulsFrame
-
-local tp10000Label = Instance.new("TextLabel")
-tp10000Label.Size = UDim2.new(0, 89, 0, 30)
-tp10000Label.Position = UDim2.new(0.664, 0, 0.227, 0)
-tp10000Label.Text = "10000 Points"
-tp10000Label.TextScaled = true
-tp10000Label.BackgroundTransparency = 1
-tp10000Label.Parent = farmSoulsFrame
-
-local tp10000Button = Instance.new("TextButton")
-tp10000Button.Name = "10000PointGiverTextButton"
-tp10000Button.Size = UDim2.new(0, 76, 0, 50)
-tp10000Button.Position = UDim2.new(0.691, 0, 0.422, 0)
-tp10000Button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-tp10000Button.Text = "Teleport"
-tp10000Button.TextScaled = true
-tp10000Button.Parent = farmSoulsFrame
-
-local goBackButton = Instance.new("TextButton")
-goBackButton.Size = UDim2.new(0, 76, 0, 50)
-goBackButton.Position = UDim2.new(0.713, 0, 0.765, 0)
-goBackButton.Text = "Go Back"
-goBackButton.TextScaled = true
-goBackButton.Parent = farmSoulsFrame
-
-local isMainFrameOpen = false
-local isFarmSoulsFrameOpen = false
-
-local tp500Pos = Vector3.new(83.00000762939453, 98.19999694824219, 153)
-local tp1000Pos = Vector3.new(83.00005340576172, 98.19923400878906, 130.5001220703125)
-local tp10000Pos = Vector3.new(373.3900451660156, 74.81000518798828, -242.38998413085938)
-
-mainButton.MouseButton1Click:Connect(function()
-    isMainFrameOpen = not isMainFrameOpen
-    if isMainFrameOpen then
-        mainButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-        mainButton.Text = "CLOSE"
-        mainFrame.Visible = true
-    else
-        mainButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-        mainButton.Text = "OPEN"
-        mainFrame.Visible = false
-        farmSoulsFrame.Visible = false
-        isFarmSoulsFrameOpen = false
+    if not playerGui then
+        error("PlayerGui not found!")
     end
-end)
 
-section1Button.MouseButton1Click:Connect(function()
+    -- Clear any existing UI with the same name to avoid duplicates
+    local existingGui = playerGui:FindFirstChild("ExecutorUI")
+    if existingGui then
+        existingGui:Destroy()
+    end
+
+    -- Create ScreenGui with ResetOnSpawn set to false
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "ExecutorUI"
+    screenGui.ResetOnSpawn = false
+    screenGui.Parent = playerGui
+
+    -- Create Main Button (OPEN/CLOSE)
+    local mainButton = Instance.new("TextButton")
+    mainButton.Size = UDim2.new(0, 137, 0, 40)
+    mainButton.Position = UDim2.new(0, 0, 0.892, 0)
+    mainButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+    mainButton.Text = "OPEN"
+    mainButton.TextScaled = true
+    mainButton.Parent = screenGui
+
+    -- Create Mainframe (Frame)
+    local mainFrame = Instance.new("Frame")
+    mainFrame.Name = "Frame"
+    mainFrame.Size = UDim2.new(0, 265, 0, 207)
+    mainFrame.Position = UDim2.new(0.108, 0, 0.336, 0)
+    mainFrame.BackgroundColor3 = Color3.fromRGB(255, 165, 0)
     mainFrame.Visible = false
-    farmSoulsFrame.Visible = true
-    isFarmSoulsFrameOpen = true
-end)
+    mainFrame.Parent = screenGui
 
-goBackButton.MouseButton1Click:Connect(function()
+    -- Section Buttons in Mainframe
+    local section1Button = Instance.new("TextButton")
+    section1Button.Name = "Section1Button"
+    section1Button.Size = UDim2.new(0, 76, 0, 50)
+    section1Button.Position = UDim2.new(0.038, 0, 0.176, 0)
+    section1Button.Text = "SECTION 1 FARM SOULS"
+    section1Button.TextScaled = true
+    section1Button.Parent = mainFrame
+
+    local section2Button = Instance.new("TextButton")
+    section2Button.Name = "Section2Button"
+    section2Button.Size = UDim2.new(0, 76, 0, 50)
+    section2Button.Position = UDim2.new(0.351, 0, 0.176, 0)
+    section2Button.Text = "SECTION 2 GET CHARACTERS"
+    section2Button.TextScaled = true
+    section2Button.Parent = mainFrame
+
+    local section3Button = Instance.new("TextButton")
+    section3Button.Name = "Section3Button"
+    section3Button.Size = UDim2.new(0, 76, 0, 50)
+    section3Button.Position = UDim2.new(0.664, 0, 0.176, 0)
+    section3Button.Text = "SECTION 3 GET BADGES"
+    section3Button.TextScaled = true
+    section3Button.Parent = mainFrame
+
+    -- Credits Labels in Mainframe
+    local ownerLabel = Instance.new("TextLabel")
+    ownerLabel.Size = UDim2.new(0, 245, 0, 30)
+    ownerLabel.Position = UDim2.new(0.038, 0, 0.469, 0)
+    ownerLabel.Text = "Username of the owner who made the UI"
+    ownerLabel.TextScaled = true
+    ownerLabel.BackgroundTransparency = 1
+    ownerLabel.Parent = mainFrame
+
+    local creditsLabel = Instance.new("TextLabel")
+    creditsLabel.Size = UDim2.new(0, 245, 0, 30)
+    creditsLabel.Position = UDim2.new(0.034, 0, 0.662, 0)
+    creditsLabel.Text = "Credits"
+    creditsLabel.TextScaled = true
+    creditsLabel.BackgroundTransparency = 1
+    creditsLabel.Parent = mainFrame
+
+    -- Create FarmSoulsFrameSection (Second Frame)
+    local farmSoulsFrame = Instance.new("Frame")
+    farmSoulsFrame.Name = "FarmSoulsFrameSection"
+    farmSoulsFrame.Size = UDim2.new(0, 265, 0, 207)
+    farmSoulsFrame.Position = UDim2.new(0.107, 0, 0.334, 0)
+    farmSoulsFrame.BackgroundColor3 = Color3.fromRGB(255, 165, 0)
     farmSoulsFrame.Visible = false
-    mainFrame.Visible = true
-    isFarmSoulsFrameOpen = false
-end)
+    farmSoulsFrame.Parent = screenGui
 
-local function teleportTo(position)
-    local character = player.Character
-    if character and character:FindFirstChild("HumanoidRootPart") then
-        character.HumanoidRootPart.CFrame = CFrame.new(position)
+    -- 500 Points Button and Label
+    local tp500Label = Instance.new("TextLabel")
+    tp500Label.Size = UDim2.new(0, 89, 0, 30)
+    tp500Label.Position = UDim2.new(0, 0, 0.227, 0)
+    tp500Label.Text = "500 Points"
+    tp500Label.TextScaled = true
+    tp500Label.BackgroundTransparency = 1
+    tp500Label.Parent = farmSoulsFrame
+
+    local tp500Button = Instance.new("TextButton")
+    tp500Button.Name = "TP500Button"
+    tp500Button.Size = UDim2.new(0, 76, 0, 50)
+    tp500Button.Position = UDim2.new(0.038, 0, 0.422, 0)
+    tp500Button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+    tp500Button.Text = "Teleport"
+    tp500Button.TextScaled = true
+    tp500Button.Parent = farmSoulsFrame
+
+    -- 1000 Points Button and Label
+    local tp1000Label = Instance.new("TextLabel")
+    tp1000Label.Size = UDim2.new(0, 89, 0, 30)
+    tp1000Label.Position = UDim2.new(0.328, 0, 0.473, 0)
+    tp1000Label.Text = "1000 Points"
+    tp1000Label.TextScaled = true
+    tp1000Label.BackgroundTransparency = 1
+    tp1000Label.Parent = farmSoulsFrame
+
+    local tp1000Button = Instance.new("TextButton")
+    tp1000Button.Name = "TP1000Button"
+    tp1000Button.Size = UDim2.new(0, 76, 0, 50)
+    tp1000Button.Position = UDim2.new(0.355, 0, 0.669, 0)
+    tp1000Button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+    tp1000Button.Text = "Teleport"
+    tp1000Button.TextScaled = true
+    tp1000Button.Parent = farmSoulsFrame
+
+    -- 10000 Points Button and Label
+    local tp10000Label = Instance.new("TextLabel")
+    tp10000Label.Size = UDim2.new(0, 89, 0, 30)
+    tp10000Label.Position = UDim2.new(0.664, 0, 0.227, 0)
+    tp10000Label.Text = "10000 Points"
+    tp10000Label.TextScaled = true
+    tp10000Label.BackgroundTransparency = 1
+    tp10000Label.Parent = farmSoulsFrame
+
+    local tp10000Button = Instance.new("TextButton")
+    tp10000Button.Name = "10000PointGiverTextButton"
+    tp10000Button.Size = UDim2.new(0, 76, 0, 50)
+    tp10000Button.Position = UDim2.new(0.691, 0, 0.422, 0)
+    tp10000Button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+    tp10000Button.Text = "Teleport"
+    tp10000Button.TextScaled = true
+    tp10000Button.Parent = farmSoulsFrame
+
+    -- Go Back Button in FarmSoulsFrameSection
+    local goBackButton = Instance.new("TextButton")
+    goBackButton.Size = UDim2.new(0, 76, 0, 50)
+    goBackButton.Position = UDim2.new(0.713, 0, 0.765, 0)
+    goBackButton.Text = "Go Back"
+    goBackButton.TextScaled = true
+    goBackButton.Parent = farmSoulsFrame
+
+    -- Toggle States
+    local isMainFrameOpen = false
+    local isFarmSoulsFrameOpen = false
+
+    -- Teleport Positions
+    local tp500Pos = Vector3.new(83.00000762939453, 98.19999694824219, 153)
+    local tp1000Pos = Vector3.new(83.00005340576172, 98.19923400878906, 130.5001220703125)
+    local tp10000Pos = Vector3.new(373.3900451660156, 74.81000518798828, -242.38998413085938)
+
+    -- Main Button Click (OPEN/CLOSE)
+    mainButton.MouseButton1Click:Connect(function()
+        isMainFrameOpen = not isMainFrameOpen
+        if isMainFrameOpen then
+            mainButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+            mainButton.Text = "CLOSE"
+            mainFrame.Visible = true
+        else
+            mainButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+            mainButton.Text = "OPEN"
+            mainFrame.Visible = false
+            farmSoulsFrame.Visible = false
+            isFarmSoulsFrameOpen = false
+        end
+    end)
+
+    -- Section 1 Button (Farm Souls)
+    section1Button.MouseButton1Click:Connect(function()
+        mainFrame.Visible = false
+        farmSoulsFrame.Visible = true
+        isFarmSoulsFrameOpen = true
+    end)
+
+    -- Go Back Button
+    goBackButton.MouseButton1Click:Connect(function()
+        farmSoulsFrame.Visible = false
+        mainFrame.Visible = true
+        isFarmSoulsFrameOpen = false
+    end)
+
+    -- Teleport Function with Safety Check
+    local function teleportTo(position)
+        local character = player.Character
+        if character and character:FindFirstChild("HumanoidRootPart") then
+            character.HumanoidRootPart.CFrame = CFrame.new(position)
+        end
     end
+
+    -- 500 Points Button Teleport
+    tp500Button.MouseButton1Click:Connect(function()
+        teleportTo(tp500Pos)
+    end)
+
+    -- 1000 Points Button Teleport
+    tp1000Button.MouseButton1Click:Connect(function()
+        teleportTo(tp1000Pos)
+    end)
+
+    -- 10000 Points Button Teleport
+    tp10000Button.MouseButton1Click:Connect(function()
+        teleportTo(tp10000Pos)
+    end)
+
+    -- Handle Character Respawn (No action needed for one-time teleports)
+    player.CharacterAdded:Connect(function(character)
+        -- No persistent teleport loops, so no action required
+    end)
+end)
+
+if not success then
+    warn("Error executing script: " .. tostring(err))
 end
-
-tp500Button.MouseButton1Click:Connect(function()
-    teleportTo(tp500Pos)
-end)
-
-tp1000Button.MouseButton1Click:Connect(function()
-    teleportTo(tp1000Pos)
-end)
-
-tp10000Button.MouseButton1Click:Connect(function()
-    teleportTo(tp10000Pos)
-end)
-
-player.CharacterAdded:Connect(function(character)
-    -- no persistent teleport needed
-end)
 ]])()
