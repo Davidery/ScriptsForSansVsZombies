@@ -77,7 +77,7 @@ local success, err = pcall(function()
     local creditsLabel = Instance.new("TextLabel")
     creditsLabel.Size = UDim2.new(0, 245, 0, 30)
     creditsLabel.Position = UDim2.new(0.034, 0, 0.662, 0)
-    creditsLabel.Text = "Credits"
+    creditsLabel.Text = "SystemOfficialer225"
     creditsLabel.TextScaled = true
     creditsLabel.BackgroundTransparency = 1
     creditsLabel.Parent = mainFrame
@@ -146,21 +146,61 @@ local success, err = pcall(function()
     tp10000Button.Parent = farmSoulsFrame
 
     -- Go Back Button in FarmSoulsFrameSection
-    local goBackButton = Instance.new("TextButton")
-    goBackButton.Size = UDim2.new(0, 76, 0, 50)
-    goBackButton.Position = UDim2.new(0.713, 0, 0.765, 0)
-    goBackButton.Text = "Go Back"
-    goBackButton.TextScaled = true
-    goBackButton.Parent = farmSoulsFrame
+    local goBackButton1 = Instance.new("TextButton")
+    goBackButton1.Size = UDim2.new(0, 76, 0, 50)
+    goBackButton1.Position = UDim2.new(0.713, 0, 0.765, 0)
+    goBackButton1.Text = "Go Back"
+    goBackButton1.TextScaled = true
+    goBackButton1.Parent = farmSoulsFrame
+
+    -- Create GetAllBadgesFrameSelection (Third Frame)
+    local getBadgesFrame = Instance.new("Frame")
+    getBadgesFrame.Name = "GetAllBadgesFrameSelection"
+    getBadgesFrame.Size = UDim2.new(0, 265, 0, 207)
+    getBadgesFrame.Position = UDim2.new(0.107, 0, 0.334, 0)
+    getBadgesFrame.BackgroundColor3 = Color3.fromRGB(255, 165, 0)
+    getBadgesFrame.Visible = false
+    getBadgesFrame.Parent = screenGui
+
+    -- GetAllBadges Button
+    local getAllBadgesButton = Instance.new("TextButton")
+    getAllBadgesButton.Size = UDim2.new(0, 150, 0, 50)
+    getAllBadgesButton.Position = UDim2.new(0.25, 0, 0.4, 0)
+    getAllBadgesButton.Text = "GetAllBadgesAndSpammableSansCharacter"
+    getAllBadgesButton.TextScaled = true
+    getAllBadgesButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+    getAllBadgesButton.Parent = getBadgesFrame
+
+    -- Go Back Button in GetAllBadgesFrameSelection
+    local goBackButton2 = Instance.new("TextButton")
+    goBackButton2.Size = UDim2.new(0, 76, 0, 50)
+    goBackButton2.Position = UDim2.new(0.713, 0, 0.765, 0)
+    goBackButton2.Text = "Go Back"
+    goBackButton2.TextScaled = true
+    goBackButton2.Parent = getBadgesFrame
 
     -- Toggle States
     local isMainFrameOpen = false
     local isFarmSoulsFrameOpen = false
+    local isGetBadgesFrameOpen = false
 
     -- Teleport Positions
     local tp500Pos = Vector3.new(83.00000762939453, 98.19999694824219, 153)
     local tp1000Pos = Vector3.new(83.00005340576172, 98.19923400878906, 130.5001220703125)
     local tp10000Pos = Vector3.new(373.3900451660156, 74.81000518798828, -242.38998413085938)
+    local badgePositions = {
+        Vector3.new(163, 97.5999984741211, 51),
+        Vector3.new(379, 129.60000610351562, 251.95001220703125),
+        Vector3.new(271.9399719238281, 83.49932861328125, 73.614990234375),
+        Vector3.new(-951.6278686523438, 128.89341735839844, 1179.94140625),
+        Vector3.new(-604.2900390625, 230.29501342773438, 315.7950439453125),
+        Vector3.new(-1570.2049560546875, 115.79501342773438, 355.2900390625),
+        Vector3.new(-1550.300048828125, 119.4150619506836, 1190.6990966796875),
+        Vector3.new(-1379.5, 115.02501678466797, 1158.5),
+        Vector3.new(347.3128967285156, 100.5, 244.5),
+        Vector3.new(303.6250915527344, 107.0999984741211, -266.5),
+        Vector3.new(-2035.9261474609375, 115.64501190185547, 1695.87353515625)
+    }
 
     -- Main Button Click (OPEN/CLOSE)
     mainButton.MouseButton1Click:Connect(function()
@@ -174,7 +214,9 @@ local success, err = pcall(function()
             mainButton.Text = "OPEN"
             mainFrame.Visible = false
             farmSoulsFrame.Visible = false
+            getBadgesFrame.Visible = false
             isFarmSoulsFrameOpen = false
+            isGetBadgesFrameOpen = false
         end
     end)
 
@@ -183,13 +225,29 @@ local success, err = pcall(function()
         mainFrame.Visible = false
         farmSoulsFrame.Visible = true
         isFarmSoulsFrameOpen = true
+        isGetBadgesFrameOpen = false
     end)
 
-    -- Go Back Button
-    goBackButton.MouseButton1Click:Connect(function()
+    -- Section 3 Button (Get Badges)
+    section3Button.MouseButton1Click:Connect(function()
+        mainFrame.Visible = false
+        getBadgesFrame.Visible = true
+        isGetBadgesFrameOpen = true
+        isFarmSoulsFrameOpen = false
+    end)
+
+    -- Go Back Button for FarmSoulsFrameSection
+    goBackButton1.MouseButton1Click:Connect(function()
         farmSoulsFrame.Visible = false
         mainFrame.Visible = true
         isFarmSoulsFrameOpen = false
+    end)
+
+    -- Go Back Button for GetAllBadgesFrameSelection
+    goBackButton2.MouseButton1Click:Connect(function()
+        getBadgesFrame.Visible = false
+        mainFrame.Visible = true
+        isGetBadgesFrameOpen = false
     end)
 
     -- Teleport Function with Safety Check
@@ -213,6 +271,14 @@ local success, err = pcall(function()
     -- 10000 Points Button Teleport
     tp10000Button.MouseButton1Click:Connect(function()
         teleportTo(tp10000Pos)
+    end)
+
+    -- GetAllBadges Button Teleport Sequence
+    getAllBadgesButton.MouseButton1Click:Connect(function()
+        for _, position in pairs(badgePositions) do
+            teleportTo(position)
+            wait(0.15) -- 0.15 seconds between each teleport
+        end
     end)
 
     -- Handle Character Respawn (No action needed for one-time teleports)
