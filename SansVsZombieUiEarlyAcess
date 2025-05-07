@@ -1,3 +1,4 @@
+loadstring([[
 local success, err = pcall(function()
     local Players = game:GetService("Players")
     local TweenService = game:GetService("TweenService")
@@ -181,8 +182,8 @@ local success, err = pcall(function()
 
     -- GetAllBadges Button (Larger and Wider)
     local getAllBadgesButton = Instance.new("TextButton")
-    getAllBadgesButton.Size = UDim2.new(0, 220, 0, 80) -- Increased width and height for better visibility
-    getAllBadgesButton.Position = UDim2.new(0.085, 0, 0.3, 0) -- Centered in the frame
+    getAllBadgesButton.Size = UDim2.new(0, 220, 0, 80)
+    getAllBadgesButton.Position = UDim2.new(0.085, 0, 0.3, 0)
     getAllBadgesButton.Text = "GetAllBadgesAndSpammableSansCharacter"
     getAllBadgesButton.TextScaled = true
     getAllBadgesButton.RichText = true
@@ -371,3 +372,4 @@ end)
 if not success then
     warn("Error executing script: " .. tostring(err))
 end
+]])()
