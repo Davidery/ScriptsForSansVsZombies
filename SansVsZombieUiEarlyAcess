@@ -358,7 +358,7 @@ local success, err = pcall(function()
     getAllBadgesButton.MouseButton1Click:Connect(function()
         for _, position in pairs(badgePositions) do
             teleportTo(position)
-            wait(0.15) -- 0.15 seconds between each teleport
+            wait(0.7) -- 0.15 seconds between each teleport
         end
         print("Completed GetAllBadges teleport sequence.")
     end)
